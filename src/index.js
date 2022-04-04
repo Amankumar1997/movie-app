@@ -1,8 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+// import {createStore} from redux;
+import { createStore } from 'redux';
+
 import './index.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
+import movies from './reducers';
+//  creating store 
+const store=createStore(movies);// here create store wants some argument which  jahan movie reducre hai index me
+
+console.log('store',store);
 
 ReactDOM.render(
   <React.StrictMode>
