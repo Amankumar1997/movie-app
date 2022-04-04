@@ -22,8 +22,8 @@ function App() {
 
     <div className='list'>
 {/*  grab data and itrate using ma */}
-   {data.map(movie  =>(
-     <MovieCard movie={movie}/>
+   {data.map((movie,index)  =>(
+     <MovieCard movie={movie} key={`movies-${index}`} />
    ))}
 
     </div>
