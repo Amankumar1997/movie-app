@@ -1,14 +1,42 @@
 //import logo from './logo.svg';
 import './App.css';
 //  we grab the data from data.js
-import {data} from'../data';
+ import {data} from'../data';
 //  import navbar and movie card
 import Navbar from './Navbar';
 import MovieCard from './MovieCard';
+import React from 'react';
 
-function App() {
+class  App extends React.Component {
+
+ 
+// we make fuction componet did mout for api call
+componentDidMount()
+{
+//  destructring 
+  const { store} =this.props;
+
+  store.subscribe(()=>{
+    console.log('updated')
+    this.forceUpdate();
+  })
+  //make api call here
+  //we dispatch the action
+  store.dispatch({
+    //  herewe want to add movie action
+    type:'ADD_MOVIES',
+    movies:data
+  })
+
+  console.log(this.props.store.getState());
+}
+
+
+  render(){
+     // here we get the state from store using props
+  const movies=this.props.store.getState();
   return (
-    <div className="App">
+    <div className="App" >
    <Navbar/>
 
      <div className='main'>
@@ -22,17 +50,14 @@ function App() {
 
     <div className='list'>
 {/*  grab data and itrate using ma */}
-   {data.map((movie,index)  =>(
+   {movies.map((movie,index)  =>(
      <MovieCard movie={movie} key={`movies-${index}`} />
    ))}
 
     </div>
     </div>
-
-
-
-   
-  );
+   );
+   }
 }
 
 export default App;

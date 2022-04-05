@@ -10,18 +10,20 @@ import movies from './reducers';
 //  creating store 
 const store=createStore(movies);// here create store wants some argument which  jahan movie reducre hai index me
 console.log('store',store);
-console.log('before state',store.getState())
 
-store.dispatch({
+// console.log('before state',store.getState())
 
-  type:'ADD_MOVIES',
-  movies:[{name:'Superman'}]
-});
-console.log('after state',store.getState());
+// // dispacth action 
+// store.dispatch({
+
+//   type:'ADD_MOVIES',
+//   movies:[{name:'Superman'}]
+// });
+// console.log('after state',store.getState());
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App store={store} />
   </React.StrictMode>,
   document.getElementById('root')
 );
