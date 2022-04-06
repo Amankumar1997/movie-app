@@ -37,7 +37,7 @@ store.dispatch(addMovies(data))
 
   render(){
      // here we get the state from store using props
-  const movies=this.props.store.getState();
+  const {list}=this.props.store.getState();
   return (
     <div className="App" >
    <Navbar/>
@@ -53,7 +53,7 @@ store.dispatch(addMovies(data))
 
     <div className='list'>
 {/*  grab data and itrate using ma */}
-   {movies.map((movie,index)  =>(
+   {list.map((movie,index)  =>(
      <MovieCard movie={movie} key={`movies-${index}`} />
    ))}
 
