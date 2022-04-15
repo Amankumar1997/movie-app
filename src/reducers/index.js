@@ -1,4 +1,4 @@
-import { ADD_MOVIES ,ADD_FAVOURITE} from "../actions";
+import { ADD_MOVIES ,ADD_TO_FAVOURITE, REMOVE_FROM_FAVOURITE,SET_SHOW_FAVOURITES} from "../actions";
 
 // making state as object
 const initialMoviesState={
@@ -25,16 +25,31 @@ switch(action.type)
     return {
                 ...state,// i use spread oprator for 
                 list: action.movies// i want change the list
+           , showFavourites:false
             }
-    case ADD_FAVOURITE:
+    case ADD_TO_FAVOURITE:
 
         return {
                     ...state,// i use spread oprator for 
                     favourates: [action.movie, ...state.favourates]// i am adding the at the first index and spread all the movie fva
-                };
-     
+                }
+     case REMOVE_FROM_FAVOURITE:
+            const filterdArray=state.favourates.filter(
+                // filter function return filtred array and not changing tha value of orignal arry 
+              movie=>movie.Title!==action.movie.Title
+                )
+          return {
+               ...state,
+               favourates:filterdArray
+                 }
+
+      case SET_SHOW_FAVOURITES:
+          return {
+              ...state,
+              showFavourites:action.val
+          }
     default:
-        return state;     // if action type does not return any thingwe just return state
+       return state;    // if action type does not return any thingwe just return state
 
 }
 

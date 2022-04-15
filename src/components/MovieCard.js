@@ -1,18 +1,23 @@
 //import logo from './logo.svg';
 
 import React from "react";
-import { addFavourite } from "../actions";
+import { addFavourite, removeFromFavourite } from "../actions";
 class  MovieCard extends React.Component {
 
 
   handleFavouriteClick=()=>{
     const {movie} =this.props;
     // here i will dispatch an action 
+
+    if(!movie.length==1)
     this.props.dispatch(addFavourite(movie))
   }
     
   handleUnFavouriteClick=()=>{
     
+    const {movie} =this.props;
+    // here i will dispatch an action 
+    this.props.dispatch(removeFromFavourite(movie))
   }
   
   
@@ -21,9 +26,9 @@ class  MovieCard extends React.Component {
         const{movie ,isFavourite}=this.props
   return (
     <div className="movie-card">
- <div className="left">
-<img src={movie.Poster} alt="movie-poster"></img>
- </div>
+    <div className="left">
+    <img src={movie.Poster} alt="movie-poster"></img>
+    </div>
 
 
  <div className="right">
@@ -32,14 +37,14 @@ class  MovieCard extends React.Component {
  <div className="plot">{movie.Plot}</div>
    
     {/* niche footer hai jo imd rating and  and fav buttn*/}
-    <div className="footer">
+  <div className="footer">
     <div className="rating">{movie.imdbRating}</div>
 
-{
-  isFavourite
-  ?<button className="unfavourite-btn" onClick={this.handleUnFavouriteClick}>Unfavourite</button>
-  :<button className="favourite-btn" onClick={this.handleFavouriteClick}>Favourite</button>
-}
+    {
+     isFavourite
+       ?<button className="unfavourite-btn" onClick={this.handleUnFavouriteClick}>Unfavourite</button>
+      :<button className="favourite-btn" onClick={this.handleFavouriteClick}>Favourite</button>
+    }
 
 
 </div>
