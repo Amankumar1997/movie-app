@@ -38,9 +38,9 @@ store.dispatch(addMovies(data))
 // this function is just check movie  is favorite list or not
 isMovieFavourite=(movie)=>{
 // now i dstuctring fav from my curent state
-const {favourates} =this.props.store.getState();
+const {movies} =this.props.store.getState();
 
-const index=favourates.indexOf(movie);// it will return the index of movie if it is in fav list else it return -1 
+const index=movies.favourates.indexOf(movie);// it will return the index of movie if it is in fav list else it return -1 
 //  if movie is present
 if(index!==-1)
 {// found the movie
@@ -61,7 +61,8 @@ this.props.store.dispatch(setShowFavourites(val))
 
   render(){
      // here we get the state from store using props
-  const {list,favourates,showFavourites}=this.props.store.getState();
+      const {movies}=this.props.store.getState();// {movies:{}, search:{}}
+     const {list,favourates,showFavourites}=movies
   console.log('Render',this.props.store.getState())
   // show favroutes true hai to favlist dikayenge other wise list of movies
   const  displayMovies=showFavourites?favourates:list;

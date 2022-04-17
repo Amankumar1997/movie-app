@@ -6,9 +6,9 @@ import { createStore } from 'redux';
 import './index.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
-import movies from './reducers';
+import rootReducer from './reducers';
 //  creating store 
-const store=createStore(movies);// here create store wants some argument which  jahan movie reducre hai index me
+const store=createStore(rootReducer);// here create store wants some argument which  jahan root reducre hai index me
 console.log('store',store);
 
 // console.log('before state',store.getState())
